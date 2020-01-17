@@ -1,0 +1,28 @@
+## mk-untangle-multiallelic ###
+# mkfile script with dependency rules for:
+#	1. Separate the multiallelic variants.
+# 2. Do not print the version of bcftools in header.
+# 3. The output will be an uncompressed vcf.
+## For more information about 'mk' dependency control, see https://9fans.github.io/plan9port/man/man1/mk.html
+
+## Define shell command line which will be used to run scripts.
+MKSHELL=/bin/bash
+
+%.untangled_multiallelics_only_snps.vcf:Q: %.tmp
+	## To filter vcf, ''--multiallelics -any' splits multiallelics sites
+	## To filter vcf, '--types snps' keeps only snps
+	## For more information about 'bcftools' commands, see https://samtools.github.io/bcftools/bcftools.html
+	echo "[DEBUG] splitting multiallelic sites into separate rows"
+	bcftools norm \
+		--multiallelics -any \
+	  --no-version \
+		--output-type v \
+	  $prereq > $target.build \
+	&& mv $target.build $target
+
+%.tmp:Q: %.vcf.gz
+	echo "[DEBUG] Keeping only snps"
+	bcftools view \
+		--types snps \
+		$prereq > $target.build \
+	&& mv $target.build $target
