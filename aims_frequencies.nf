@@ -3,12 +3,10 @@
 /*================================================================
 The MORETT LAB presents...
 
-  The Variant Effect Predictor Annotation Pipeline for gnomAD V3 frequencies
-
-- A vcf rsId and functional effect prediction tool (and more)
+  The Annotation Pipeline for gnomAD V3 frequencies
 
 ==================================================================
-Version: 0.0.2
+Version: 0.0.1
 Project repository:
 ==================================================================
 Authors:
@@ -27,6 +25,7 @@ Authors:
 Pipeline Processes In Brief:
 .
 Pre-processing:
+NONE
 
 Core-processing:
   _001_untangle_multiallelic
@@ -34,6 +33,7 @@ Core-processing:
   _003_vep_extended
 
 Pos-processing
+NONE
 
 ================================================================*/
 
@@ -41,8 +41,7 @@ Pos-processing
 def helpMessage() {
 	log.info"""
   ==========================================
-  The Variant Effect Predictor Annotation Pipeline
-  - A vcf rsId and functional effect prediction tool (and more)
+  The Annotation Pipeline for gnomAD V3 frequencies
   v${version}
   ==========================================
 
@@ -72,7 +71,7 @@ def helpMessage() {
   Define pipeline version
   If you bump the number, remember to bump it in the header description at the begining of this script too
 */
-version = "0.0.2"
+version = "0.0.1"
 
 /*//////////////////////////////
   Define pipeline Name
@@ -102,7 +101,7 @@ if (params.help){
   print the pipeline version
 */
 if (params.version){
-	println "VEP Annotator v${version}"
+	println "Aims Frequencies v${version}"
 	exit 0
 }
 
@@ -176,8 +175,7 @@ def get_baseName(f) {
 */
 log.info"""
 ==========================================
-The Variant Effect Predictor Annotation Pipeline
-- A vcf rsId and functional effect prediction tool (and more)
+The Annotation Pipeline for gnomAD V3 frequencies
 v${version}
 ==========================================
 """
