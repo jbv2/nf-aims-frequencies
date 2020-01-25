@@ -287,12 +287,14 @@ process _002_annotate_rsID {
 genome_reference = Channel.fromPath("${params.genome_reference}*")
 gnomad_reference = Channel.fromPath("${params.gnomad_reference}*")
 gnomad_coverage_reference = Channel.fromPath("${params.gnomad_coverage_reference}*")
+project_coverage_reference = Channel.fromPath("${params.project_coverage}*")
 
 /* mix channels for VEP required references */
 genome_reference
   .mix(
 		gnomad_reference
     ,gnomad_coverage_reference
+		,project_coverage_reference
 	)
 	.toList()
 	.set{ references_for_VEP }
@@ -321,6 +323,7 @@ process _003_vep_extended {
 	export GENOME_REFERENCE="${get_baseName(params.genome_reference)}"
 	export GNOMAD_REFERENCE="${get_baseName(params.gnomad_reference)}"
 	export GNOMAD_COVERAGE_REFERENCE="${get_baseName(params.gnomad_coverage_reference)}"
+	export PROJECT_COVERAGE="${get_baseName(params.project_coverage)}"
 	bash runmk.sh
 	"""
 

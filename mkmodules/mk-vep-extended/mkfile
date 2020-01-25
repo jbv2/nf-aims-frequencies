@@ -78,4 +78,5 @@ MKSHELL=/bin/bash
 		--allow_non_variant \
 		-custom "$GNOMAD_REFERENCE","gnomADg","vcf","exact",0,$(grep -v "^#" gnomAD-variants_fields_to_annotate.txt | tr "\n" "," | sed "s#,\$##") \
 		-custom "$GNOMAD_COVERAGE_REFERENCE","gnomADg_cov","bed","overlap","0" \
+		-custom "$PROJECT_COVERAGE","project_cov","bed","overlap","0" \
 		&& mv $target.build $target

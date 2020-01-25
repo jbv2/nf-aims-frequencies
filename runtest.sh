@@ -6,6 +6,7 @@ echo -e "======\n Testing NF execution \n======" \
 	--genome_reference test/reference/genome/chr22.fa.gz \
 	--gnomad_reference test/reference/gnomAD/sample_gnomAD.vcf.bgz \
 	--gnomad_coverage_reference test/reference/gnomAD/sample_gnomAD.coverage.summary.bed.gz \
+	--project_coverage test/reference/100GMX/sample_coverages.bed.gz \
 	--output_dir test/results \
 	-resume \
 	-with-report test/results/`date +%Y%m%d_%H%M%S`_report.html \
